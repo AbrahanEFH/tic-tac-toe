@@ -23,12 +23,12 @@ function App() {
           {
             board.map((_, index) => {
               return (
-                <div className="cell" key={index} >
-                  <span className="cell_content">
-                    {index}
-                  </span>
-
-                </div>
+                <Square
+                  key={index}
+                  index={index}
+                  >
+                   {index}
+                </Square>
               )
             })
           }
