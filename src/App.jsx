@@ -25,7 +25,12 @@ function App() {
 
   const [ turn, setTurn] = useState(TURNS.X)
 
+  const [winner, setWinner] = useState(null) // null es que no hay ganador, false es que hay un empate
+
   const updateBoard = (index) => {
+    // Revisamos si tiene algo en la posicion 
+    if(board[index]) return
+
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
