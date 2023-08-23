@@ -1,8 +1,9 @@
 import { useState } from "react"
+import confetti from "canvas-confetti"
 
 const TURNS = {
-  X: 'x',
-  O: 'o'
+  X: '🗡',
+  O: '👺'
 }
 
 const Square = ({ children, isSelected, updateBoard, index }) => {
@@ -53,10 +54,18 @@ function App() {
     return null
   }
 
+
+  // Utilizamos de cero los estados que habiamos creado para resetear el juego 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+  }
+
+  const checkEndGame = (newBoard) => {
+    // Revisamos si hay empate 
+    //si no hay espacios vacios
+    return newBoard.every((square) => square !== null)
   }
 
   const updateBoard = (index) => {
@@ -73,10 +82,14 @@ function App() {
     // Revisar si hay ganador
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
+      confetti()
       setWinner(newWinner) 
-    } 
-    // check if game is over
 
+      // Revisar si hay un empate
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false)
+    }
+    
   }
 
   return (
@@ -84,6 +97,7 @@ function App() {
         <h1>
           Tic tac toe
         </h1>
+        <button onClick={resetGame} > Reset del juego</button>
         <section className="game">
           {
             board.map((_, index) => {
