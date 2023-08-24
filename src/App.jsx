@@ -44,7 +44,7 @@ function App() {
     setTurn(newTurn)
     // guardar aqui partida en localStorage
     window.localStorage.setItem('board', JSON.stringify(newBoard))
-    window.localStorage.setItem('turn', turn)
+    window.localStorage.setItem('turn', newTurn)
 
     // Revisar si hay ganador
     const newWinner = checkWinner(newBoard)
