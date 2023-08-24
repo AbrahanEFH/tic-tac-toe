@@ -2,8 +2,8 @@ import { useState } from "react"
 import confetti from "canvas-confetti"
 
 const TURNS = {
-  X: '🗡',
-  O: '👺'
+  X: '❌',
+  O: '⭕️'
 }
 
 const Square = ({ children, isSelected, updateBoard, index }) => {
@@ -31,6 +31,7 @@ const winner_combos = [
   [0,4,8],
   [2,4,6]
 ]
+
 
 function App() {
   const [ board, setBoard] = useState(Array(9).fill(null))
